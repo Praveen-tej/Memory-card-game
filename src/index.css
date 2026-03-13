@@ -120,3 +120,11 @@ body {
   background-color: midnightblue;
   border: 2px solid mediumseagreen;
 }
+
+.win-message {
+  text-align: center;
+  font-size: 48px;
+  color: gold;
+  padding: 20px;
+  animation: shake 1s infinite;
+}
