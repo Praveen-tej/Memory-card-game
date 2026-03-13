@@ -31,9 +31,22 @@ function App() {
   const [flippedCards, setFlippedCards] = useState([]);
   const [isWon, setIsWon] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [difficulty, setDifficulty] = useState("Easy");
 
-  const newGame = () => {
-    const startingCards = cardValues.map((value, index) => ({
+  const newGame = (level) => {
+    const currentDifficulty = level || difficulty;
+
+    let selectedCards;
+    if (currentDifficulty === "Easy") {
+      const unique = cardValues.slice(0, 4);
+      selectedCards = [...unique, ...unique];
+    } else if (currentDifficulty === "Medium") {
+      const unique = cardValues.slice(0, 6);
+      selectedCards = [...unique, ...unique];
+    } else {
+      selectedCards = cardValues.slice(0, 16);
+    }
+    const startingCards = selectedCards.map((value, index) => ({
       id: index,
       value,
       isFlipped: false,
@@ -56,7 +69,6 @@ function App() {
 
   useEffect(() => {
     if (flippedCards.length === 2) {
-      //here setisDisabled(true)
       setIsDisabled(true);
       setMoves((prev) => prev + 1);
       if (flippedCards[0].value === flippedCards[1].value) {
@@ -70,6 +82,7 @@ function App() {
           }
         });
         setCards(updatedCards);
+        setIsDisabled(false);
         if (updatedCards.every((c) => c.isMatched)) {
           setIsWon(true);
         }
@@ -111,9 +124,19 @@ function App() {
     setFlippedCards([...flippedCards, card]);
   };
 
+  const changeDifficulty = (level) => {
+    setDifficulty(level);
+    newGame(level);
+  };
+
   return (
     <>
-      <Header scores={scores} moves={moves} onReset={newGame} />
+      <Header
+        scores={scores}
+        moves={moves}
+        onReset={newGame}
+        onDifficultyChange={changeDifficulty}
+      />
 
       {isWon && <div className="win-message">🎉 You Win!</div>}
 

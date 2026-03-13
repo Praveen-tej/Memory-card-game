@@ -1,4 +1,4 @@
-export default function Header({scores,moves , onReset}){
+export default function Header({scores, moves , onReset , onDifficultyChange , difficulty}){
     return (
         <div>
             <div className="game-header">
@@ -14,6 +14,12 @@ export default function Header({scores,moves , onReset}){
                     <span className="stat-value">{moves}</span>
                 </div>
             </div>
+            <select  className="difficulty-select" value={difficulty} onChange={(e) => onDifficultyChange(e.target.value)} >
+                <option disabled>Select Level</option>
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+            </select>
             <button  onClick={onReset} className="reset-btn">New Game</button>
         </div>
     )
