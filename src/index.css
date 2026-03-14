@@ -9,7 +9,52 @@ body {
   font-family: Arial, sans-serif;
   min-height: 100vh;
 }
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1a1a2e;
+}
 
+.home-content {
+    text-align: center;
+    padding: 50px 60px;
+    background-color: #16213e;
+    border-radius: 20px;
+    border: 2px solid crimson;
+    width: 450px;
+}
+
+.home-title {
+    color: crimson;
+    font-size: 40px;
+    margin-bottom: 15px;
+    white-space: nowrap;
+}
+
+.home-description {
+    color: darkgray;
+    font-size: 16px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.play-btn {
+    padding: 15px 50px;
+    background-color: crimson;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.play-btn:hover {
+    background-color: darkred;
+    transform: scale(1.05);
+}
 /* Header */
 .game-header {
   text-align: center;
