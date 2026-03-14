@@ -19,7 +19,8 @@ const cardValues = [
   "🐸",
   "🐵",
   "🐰",
-];
+]
+
 function Game() {
   const [scores, setScores] = useState(0);
   const [moves, setMoves] = useState(0);
