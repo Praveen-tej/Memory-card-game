@@ -1,6 +1,7 @@
 import Header from "./Header";
 import GameCards from "./GameCard";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const cardValues = [
   "🐶",
@@ -19,7 +20,7 @@ const cardValues = [
   "🐸",
   "🐵",
   "🐰",
-]
+];
 
 function Game() {
   const [scores, setScores] = useState(0);
@@ -28,7 +29,12 @@ function Game() {
   const [flippedCards, setFlippedCards] = useState([]);
   const [isWon, setIsWon] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const [difficulty, setDifficulty] = useState("");
+
+  const location = useLocation();
+  const locationState = location.state;
+  const initialDifficulty = locationState?.difficulty 
+
+  const [difficulty, setDifficulty] = useState(initialDifficulty);
 
   const newGame = (level) => {
     const currentDifficulty = level || difficulty;
@@ -49,9 +55,7 @@ function Game() {
       isFlipped: false,
       isMatched: false,
     }));
-
     startingCards.sort(() => Math.random() - 0.5);
-
     setCards(startingCards);
     setScores(0);
     setMoves(0);

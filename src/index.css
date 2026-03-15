@@ -23,8 +23,7 @@ body {
     background-color: #16213e;
     border-radius: 20px;
     border: 2px solid crimson;
-    width: 85%;
-    max-width: 400px;
+    max-width: 450px;
 }
 
 .home-title {
@@ -196,4 +195,31 @@ body {
 
 .difficulty-select:hover {
   background-color: darkblue;
+}
+
+.difficulty-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.difficulty-btn {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.difficulty-btn.active {
+  background-color: crimson;
+  border-color: crimson;
+}
+
+.difficulty-btn:hover {
+  border-color: crimson;
 }
