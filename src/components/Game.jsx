@@ -1,6 +1,6 @@
 import Header from "./Header";
 import GameCards from "./GameCard";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const cardValues = [
@@ -29,15 +29,24 @@ function Game() {
   const [flippedCards, setFlippedCards] = useState([]);
   const [isWon, setIsWon] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [gamekey, setGamekey] = useState(0);
+
+  const [timer, setTimer] = useState(0);
+  const timerRef = useRef(null);
 
   const location = useLocation();
   const locationState = location.state;
-  const initialDifficulty = locationState?.difficulty 
+  const initialDifficulty = locationState?.difficulty || "Easy";
 
   const [difficulty, setDifficulty] = useState(initialDifficulty);
 
   const newGame = (level) => {
-    const currentDifficulty = level || difficulty;
+    setGamekey((prev) => prev + 1);
+    setTimer(0);
+    clearInterval(timerRef.current);
+
+    const currentDifficulty =
+      level || difficulty || initialDifficulty || "Easy";
 
     let selectedCards;
     if (currentDifficulty === "Easy") {
@@ -66,6 +75,16 @@ function Game() {
   useEffect(() => {
     newGame();
   }, []);
+
+  useEffect(() => {
+    clearInterval(timerRef.current);
+    setTimer(0);
+    timerRef.current = setInterval(() => {
+      setTimer((prev) => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(timerRef.current);
+  }, [gamekey]);
 
   useEffect(() => {
     if (flippedCards.length === 2) {
@@ -103,6 +122,12 @@ function Game() {
     }
   }, [flippedCards]);
 
+  useEffect(() => {
+    if (isWon) {
+      clearInterval(timerRef.current);
+    }
+  }, [isWon]);
+
   const cardClick = (card) => {
     if (isDisabled) return;
 
@@ -135,6 +160,7 @@ function Game() {
         onReset={newGame}
         onDifficultyChange={changeDifficulty}
         difficulty={difficulty}
+        timer={timer}
       />
 
       {isWon && <div className="win-message">🎉 You Win!</div>}

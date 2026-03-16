@@ -4,6 +4,7 @@ export default function Header({
   onReset,
   onDifficultyChange,
   difficulty,
+  timer,
 }) {
   return (
     <div>
@@ -19,6 +20,10 @@ export default function Header({
           <span className="stat-label">Moves:</span>
           <span className="stat-value">{moves}</span>
         </div>
+        <div className="stat-item">
+          <span className="stat-label">Time:</span>
+          <span className="stat-value">{timer}s</span>
+        </div>
       </div>
       <select
         className="difficulty-select"
@@ -32,7 +37,7 @@ export default function Header({
         <option value="Medium">Medium</option>
         <option value="Hard">Hard</option>
       </select>
-      <button onClick={onReset} className="reset-btn">
+      <button onClick={() => onReset()} className="reset-btn" >
         New Game
       </button>
     </div>
