@@ -172,7 +172,7 @@ body {
 .win-message {
   text-align: center;
   font-size: 48px;
-  color: gold;
+  color: lightgreen;
   padding: 20px;
   animation: pulse 1s infinite;
 }
