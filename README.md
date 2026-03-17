@@ -1,23 +1,49 @@
-<img width="1890" height="861" alt="image" src="https://github.com/user-attachments/assets/6b3051f3-8163-456d-8802-4e257483ede4" />
+<img width="1895" height="853" alt="image" src="https://github.com/user-attachments/assets/3ca7c4ad-8fed-4519-b682-192dade231a6" />
 
 
 
+# 🧠 Brain Hack — Memory Card Game
 
+A fun and challenging memory card game built with React. 
+Test your memory by matching pairs of emoji cards 
+before the timer runs out!
 
+🔗 **Check out my website:** [p-card.vercel.app](https://p-card.vercel.app)
 
-# React + Vite
+---
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ✨ Features
 
-Currently, two official plugins are available:
+### 🃏 Gameplay
+- Flip cards to reveal hidden emojis and find matching pairs
+- Cards shuffle randomly on every new game keeping it fresh
+- Smooth 3D flip animation brings the cards to life
+- Unmatched cards automatically flip back after 1 second
+- Only 2 cards can be flipped at a time — no cheating! 😄
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### ⏱️ Timer
+- Each difficulty level has its own countdown timer
+- Timer stops automatically when you win
+- Game ends and cards flip back when time runs out
 
-## React Compiler
+### 🏆 Score Tracking
+- Tracks your current score and total moves
+- High scores saved separately per difficulty level
+- Best time persists even after closing or refreshing the page
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🎮 Difficulty Levels
+- 🟢 **Easy** → 8 cards, 4 pairs, 30 seconds
+- 🟡 **Medium** → 12 cards, 6 pairs, 60 seconds
+- 🔴 **Hard** → 16 cards, 8 pairs, 90 seconds
 
-## Expanding the ESLint configuration
+### 📱 Responsive Design
+- Fully playable on mobile, tablet, and desktop
+- Smooth experience across all screen sizes
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🛠️ Built With
+- **React** — UI and state management
+- **React Router** — page navigation
+- **CSS3** — animations and responsive layout
+- **localStorage** — persistent high score storage
+- **Vite** — development build tool
+- **Vercel** — deployment and hosting
