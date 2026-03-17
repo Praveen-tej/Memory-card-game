@@ -5,6 +5,7 @@ export default function Header({
   onDifficultyChange,
   difficulty,
   timer,
+  highscore
 }) {
   return (
     <div>
@@ -23,6 +24,10 @@ export default function Header({
         <div className="stat-item">
           <span className="stat-label">Time:</span>
           <span className="stat-value">{timer}s</span>
+        </div>
+        <div className="stat-item">
+          <span className="stat-label">HighScore:</span>
+          <span className="stat-value">{highscore}s</span>
         </div>
       </div>
       <select

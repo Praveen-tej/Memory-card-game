@@ -178,9 +178,9 @@ body {
 }
 
 @keyframes pulse {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0%   { opacity: 1; }
+  50%  { opacity: 0.5; }
+  100% { opacity: 1; }
 }
 
 .difficulty-select {
@@ -232,6 +232,14 @@ body {
 .difficulty-btn:hover {
   border-color: white;
   background-color: slategray;
+}
+
+.game-over-message {
+  text-align: center;
+  font-size: 35px;
+  color: tomato;
+  padding: 20px;
+  animation: pulse 2s infinite;
 }
 
 /* Tablet */

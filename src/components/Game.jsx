@@ -30,6 +30,7 @@ function Game() {
   const [isWon, setIsWon] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [gamekey, setGamekey] = useState(0);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   const [timer, setTimer] = useState(0);
   const timerRef = useRef(null);
@@ -40,36 +41,51 @@ function Game() {
 
   const [difficulty, setDifficulty] = useState(initialDifficulty);
 
+  const [highscore, setHighscore] = useState(() => {
+    return (
+      JSON.parse(localStorage.getItem(`highscore_${initialDifficulty}`)) || 0
+    );
+  });
+
   const newGame = (level) => {
     setGamekey((prev) => prev + 1);
-    setTimer(0);
     clearInterval(timerRef.current);
 
     const currentDifficulty =
       level || difficulty || initialDifficulty || "Easy";
 
+    const savedHighscore =
+      JSON.parse(localStorage.getItem(`highscore_${currentDifficulty}`)) || 0;
+    setHighscore(savedHighscore);
+
     let selectedCards;
     if (currentDifficulty === "Easy") {
       const unique = cardValues.slice(0, 4);
       selectedCards = [...unique, ...unique];
+      setTimer(30);
     } else if (currentDifficulty === "Medium") {
       const unique = cardValues.slice(0, 6);
       selectedCards = [...unique, ...unique];
+      setTimer(60);
     } else {
       selectedCards = cardValues.slice(0, 16);
+      setTimer(90);
     }
+
     const startingCards = selectedCards.map((value, index) => ({
       id: index,
       value,
       isFlipped: false,
       isMatched: false,
     }));
+
     startingCards.sort(() => Math.random() - 0.5);
     setCards(startingCards);
     setScores(0);
     setMoves(0);
     setIsWon(false);
     setIsDisabled(false);
+    setIsGameOver(false);
   };
 
   useEffect(() => {
@@ -78,11 +94,9 @@ function Game() {
 
   useEffect(() => {
     clearInterval(timerRef.current);
-    setTimer(0);
     timerRef.current = setInterval(() => {
-      setTimer((prev) => prev + 1);
+      setTimer((prev) => prev - 1);
     }, 1000);
-
     return () => clearInterval(timerRef.current);
   }, [gamekey]);
 
@@ -125,16 +139,28 @@ function Game() {
   useEffect(() => {
     if (isWon) {
       clearInterval(timerRef.current);
+      setIsGameOver(false);
+      if (timer > highscore) {
+        setHighscore(timer);
+        localStorage.setItem(`highscore_${difficulty}`, JSON.stringify(timer));
+      }
     }
   }, [isWon]);
 
+  useEffect(() => {
+    if (timer === 0 && cards.length > 0 && !isWon) {
+      clearInterval(timerRef.current);
+      setIsDisabled(true);
+      setIsGameOver(true);
+      setCards(cards.map((c) => ({ ...c, isFlipped: false })));
+    }
+  }, [timer]);
+
   const cardClick = (card) => {
     if (isDisabled) return;
-
     if (card.isFlipped || card.isMatched || flippedCards.length === 2) {
       return;
     }
-
     const updateCards = cards.map((c) => {
       if (c.id === card.id) {
         return { ...c, isFlipped: true };
@@ -142,7 +168,6 @@ function Game() {
         return c;
       }
     });
-
     setCards(updateCards);
     setFlippedCards([...flippedCards, card]);
   };
@@ -161,9 +186,11 @@ function Game() {
         onDifficultyChange={changeDifficulty}
         difficulty={difficulty}
         timer={timer}
+        highscore={highscore}
       />
 
       {isWon && <div className="win-message">🎉 You Win!</div>}
+      {isGameOver && <div className="game-over-message">⏰ Time's Up!</div>}
 
       <div className="cards-grid">
         {cards.map((card, index) => (
