@@ -8,7 +8,7 @@ A fun and challenging memory card game built with React.
 Test your memory by matching pairs of emoji cards 
 before the timer runs out!
 
-🔗 **Live Demo:** [memory-card-game.vercel.app](https://memory-card-game.vercel.app)
+🔗 **Check out my website:** [p-card.vercel.app](https://p-card.vercel.app)
 
 ---
 
