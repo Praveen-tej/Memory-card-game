@@ -30,18 +30,7 @@ export default function Header({
           <span className="stat-value">{highscore}s</span>
         </div>
       </div>
-      <select
-        className="difficulty-select"
-        value={difficulty}
-        onChange={(e) => onDifficultyChange(e.target.value)}
-      >
-        <option value="" disabled>
-          Select Level
-        </option>
-        <option value="Easy">Easy</option>
-        <option value="Medium">Medium</option>
-        <option value="Hard">Hard</option>
-      </select>
+ 
       <button onClick={() => onReset()} className="reset-btn" >
         New Game
       </button>
