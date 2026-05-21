@@ -67,7 +67,7 @@ function Game() {
       isMatched: false,
     }));
 
-    startingCards.sort(() => Math.random() - 0.5);
+    startingCards.sort(()=> Math.random() - 0.5);
     setCards(startingCards);
     setScores(0);
     setMoves(0);

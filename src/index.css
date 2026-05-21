@@ -211,13 +211,13 @@ body {
 
 
 .difficulty-select option {
-  background-color: steelblue;
+  background-color: rgb(83, 152, 209);
   color: white;
   padding: 10px;
 }
 
 .difficulty-select:hover {
-  background-color: slategray;
+  background-color: rgb(107, 125, 144);
 }
 
 .difficulty-buttons {
