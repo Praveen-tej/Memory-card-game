@@ -28,8 +28,7 @@ export default function Home() {
           onClick={() =>
             navigate("/game", { state: { difficulty: selectedDifficulty } })
           }
-        >
-          Play Now 🎮
+        >Play Now 🎮
         </button>
       </div>
     </div>

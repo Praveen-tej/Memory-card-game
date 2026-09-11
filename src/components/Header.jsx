@@ -30,7 +30,6 @@ export default function Header({
           <span className="stat-value">{highscore}s</span>
         </div>
       </div>
- 
       <button onClick={() => onReset()} className="reset-btn" >
         New Game
       </button>

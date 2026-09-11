@@ -9,6 +9,3 @@ export default function GameCards({card , onCardClick}){
      </div>
     )   
 }
-
-
-        /* {card.isFlipped ? <div className="card-front">{card.value}</div> : <div className="card-back">?</div>} */

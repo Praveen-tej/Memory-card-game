@@ -3,8 +3,9 @@ import GameCards from "./GameCard";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const cardValues = [
-  "🐶","🐱", "🐼","🦁",
+const cardValues =  
+[
+  "🐶","🐱","🐼","🦁",
   "🐯","🐸","🐵","🐰",
   "🐶","🐱","🐼","🦁",
   "🐯","🐸","🐵","🐰",
@@ -26,7 +27,7 @@ function Game() {
   const location = useLocation();
   const locationState = location.state;
   const initialDifficulty = locationState?.difficulty || "Easy";
-
+  
   const [difficulty, setDifficulty] = useState(initialDifficulty);
 
   const [highscore, setHighscore] = useState(() => {
@@ -44,7 +45,7 @@ function Game() {
 
     const savedHighscore =
       JSON.parse(localStorage.getItem(`highscore_${currentDifficulty}`)) || 0;
-    setHighscore(savedHighscore);
+      setHighscore(savedHighscore);
 
     let selectedCards;
     if (currentDifficulty === "Easy") {
@@ -122,8 +123,8 @@ function Game() {
       }
       setFlippedCards([]);
     }
-  }, [flippedCards]);
-
+  }, [flippedCards,cards]);
+ 
   useEffect(() => {
     if (isWon) {
       clearInterval(timerRef.current);
@@ -133,7 +134,7 @@ function Game() {
         localStorage.setItem(`highscore_${difficulty}`, JSON.stringify(timer));
       }
     }
-  }, [isWon]);
+  }, [isWon,timer, highscore, difficulty]);
 
   useEffect(() => {
     if (timer === 0 && cards.length > 0 && !isWon) {
