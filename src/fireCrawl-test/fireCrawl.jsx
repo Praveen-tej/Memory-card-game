@@ -11,7 +11,9 @@ function FirecrawlTest() {
     <div style={{ padding: "40px", fontFamily: "Arial" }}>
       <h1>Firecrawl Popup Test</h1>
 
-      <p>This is the actual website content that Firecrawl should scrape.</p>
+      <p>
+        This is the actual website content that Firecrawl should scrape.
+      </p>
 
       <h2>Products</h2>
 
@@ -39,21 +41,8 @@ function FirecrawlTest() {
               padding: "30px",
               borderRadius: "10px",
               textAlign: "center",
-              position: "relative",
             }}
           >
-            <button
-              id="closePopup"
-              onClick={() => setShowPopup(false)}
-              style={{
-                position: "absolute",
-                right: "10px",
-                top: "10px",
-              }}
-            >
-              X
-            </button>
-
             <h2>🎁 Special Offer!</h2>
 
             <p>Spin & Win a Free Prize!</p>
