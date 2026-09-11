@@ -4,20 +4,14 @@ function FirecrawlTest() {
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowPopup(true);
-    });
-
-    return () => clearTimeout(timer);
+    setShowPopup(true);
   }, []);
 
   return (
     <div style={{ padding: "40px", fontFamily: "Arial" }}>
       <h1>Firecrawl Popup Test</h1>
 
-      <p>
-        This is the actual website content that Firecrawl should scrape.
-      </p>
+      <p>This is the actual website content that Firecrawl should scrape.</p>
 
       <h2>Products</h2>
 
