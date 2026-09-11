@@ -6,7 +6,7 @@ function FirecrawlTest() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowPopup(true);
-    }, 2000);
+    });
 
     return () => clearTimeout(timer);
   }, []);
